@@ -9,7 +9,18 @@ RUN yum install -y epel-release
 RUN yum groups mark convert
 RUN yum groupinstall -y 'Development Tools'
 
-RUN yum install -y clang-3.8.0 clang-3.8.0-devel llvm-3.8.0-devel 
+#build and install clang 3.8.1
+cd /tmp
+wget http://releases.llvm.org/3.8.1/llvm-3.8.1.src.tar.xz
+wget http://releases.llvm.org/3.8.1/cfe-3.8.1.src.tar.xz
+tar -xf llvm-3.8.1.src.tar.xz
+tar -xf cfe-3.8.1.src.tar.xz
+mv cfe-3.8.1.src llvm-3.8.1.src/tools/clang
+mkdir build && cd build
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local ../llvm-3.8.1.src
+make
+make install
+
 RUN yum install -y cmake3 cmake python-testtools python-pip wget
 RUN yum install -y qt-creator protobuf-compiler graphviz libxml2-devel libxslt-devel
 RUN yes | pip install checksumdir
