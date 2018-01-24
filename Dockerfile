@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER petrov <obrbkru@apriorit.com>
+MAINTAINER kotik <obrbkru@apriorit.com>
 
 RUN yum -y update && yum clean all
 
