@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER petrov <petrov@apriorit.com>
+MAINTAINER petrov <obrbkru@apriorit.com>
 
 RUN yum -y update && yum clean all
 
@@ -9,7 +9,8 @@ RUN yum install -y epel-release
 RUN yum groups mark convert
 RUN yum groupinstall -y 'Development Tools'
 
-RUN yum install -y clang clang-devel llvm-devel cmake3 cmake python-testtools python-pip wget
+RUN yum install -y clang-3.8.0 clang-3.8.0-devel llvm-3.8.0-devel 
+RUN yum install -y cmake3 cmake python-testtools python-pip wget
 RUN yum install -y qt-creator protobuf-compiler graphviz libxml2-devel libxslt-devel
 RUN yes | pip install checksumdir
 RUN yes | pip install conan
