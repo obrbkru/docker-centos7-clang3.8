@@ -9,6 +9,7 @@ RUN yum install -y epel-release
 RUN yum groups mark convert
 RUN yum groupinstall -y 'Development Tools'
 
+RUN yum install -y cmake3 cmake python-testtools python-pip wget
 #build and install clang 3.8.1
 RUN yum install -y wget
 RUN cd /tmp && \
@@ -22,7 +23,6 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr/local ../llvm-3.8.1.src && \
 make && \
 make install
 
-RUN yum install -y cmake3 cmake python-testtools python-pip wget
 RUN yum install -y qt-creator protobuf-compiler graphviz libxml2-devel libxslt-devel
 RUN yes | pip install checksumdir
 RUN yes | pip install conan
